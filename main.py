@@ -152,10 +152,17 @@ if __name__ == '__main__':
     in_vid_path = 'test_vid.mp4'
 
     # output video with points plotted on face
+    # pass empty string if no visualization to be generated
     out_vid_path = 'op_test_vid.mp4'
 
-    # csv to store landmarks
+    # path to csv file for storing landmarks data
     out_csv_path = 'test_data.csv'
+
+    # value of minimum detection confidence threshold
+    min_detection_confidence = 0.5
+
+    # value of minimum tracking confidence threshold
+    min_tracking_confidence = 0.5
 
     # create object of MediaPipe_Impl class with params
     mediapipe_obj = MediaPipe_Impl(in_vid_path, out_csv_path, out_vid_path)
