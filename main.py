@@ -13,11 +13,11 @@ class MediaPipe_Impl:
 
         Parameters
         ----------
-        in_video_path : string
+        in_video_path : str
             the path to the video to be used
-        out_csv_path : string
+        out_csv_path : str
             the path to the output csv file path
-        out_video_path : string
+        out_video_path : str
             the path to the video to be used
         min_detection_confidence : float
             Minimum detection confidence
@@ -56,7 +56,8 @@ class MediaPipe_Impl:
         """
             This function computes the landmarks using mediapipe
             and stores visualizations if required.
-        :return:
+        Returns:
+            None
         """
 
         # create reader object for input video
@@ -74,11 +75,15 @@ class MediaPipe_Impl:
         # count number of frames
         n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
+
+        print("Reading video %s " %self.in_video_path)
+
+        print(f'Number of frames {n_frames}')
+        print(f'Number of landmarks {self.n_landmarks}')
+
         # fill the feats array with nans
         feats = np.empty((n_frames, 1 + 3 * self.n_landmarks), dtype=np.float32)
         feats[:] = np.nan
-
-        print("Reading video %s " %self.in_video_path)
 
         if self.out_video_path != '':
             print("Storing visualizations to %s " % self.out_video_path)
@@ -134,6 +139,7 @@ class MediaPipe_Impl:
 
         # release resources
         cap.release()
+
         if self.out_video_path!='':
             print("Stored visualizations to %s successfully !!" % self.out_video_path)
             out.release()
